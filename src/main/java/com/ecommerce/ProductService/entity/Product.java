@@ -12,7 +12,7 @@ public class Product {
 
     @Id
     @Column(name = "PRODUCT_ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long productId;
 
     @Column(name = "PRODUCT_NAME")
