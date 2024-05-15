@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ErrorMessage {
     private String errorMessage;
-    private String errorCode;
+    private ProductErrorCode errorCode;
 }
