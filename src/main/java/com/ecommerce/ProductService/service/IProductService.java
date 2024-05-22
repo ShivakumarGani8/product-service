@@ -3,10 +3,10 @@ package com.ecommerce.ProductService.service;
 import com.ecommerce.ProductService.model.ProductRequest;
 import com.ecommerce.ProductService.model.ProductResponse;
 
-public interface IProductServie {
+public interface IProductService {
     long addProduct(ProductRequest productRequest);
 
-    ProductResponse getProduct(String productId);
+    ProductResponse getProduct(long productId);
 
-    long reduceQuantity(Long productId, Long quantity);
+    long reduceQuantity(long productId, long quantity);
 }

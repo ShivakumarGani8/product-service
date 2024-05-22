@@ -6,18 +6,14 @@ import com.ecommerce.ProductService.model.ProductErrorCode;
 import com.ecommerce.ProductService.model.ProductRequest;
 import com.ecommerce.ProductService.model.ProductResponse;
 import com.ecommerce.ProductService.repository.ProductRepository;
-import com.fasterxml.jackson.databind.util.BeanUtil;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Log4j2
 @Service
-public class ProductServiceImpl implements IProductServie{
+public class ProductServiceImpl implements IProductService {
 
     @Autowired
     private ProductRepository productRepository;
@@ -34,10 +30,10 @@ public class ProductServiceImpl implements IProductServie{
     }
 
     @Override
-    public ProductResponse getProduct(String productId) {
+    public ProductResponse getProduct(long productId) {
         log.info("Get product with the productId : {}", productId);
         Product product= productRepository
-                .findById(productId).orElseThrow(() ->
+                .findById(String.valueOf(productId)).orElseThrow(() ->
                         new ProductServiceCustomException("Product not found with ID: "+productId, ProductErrorCode.PRODUCT_NOT_FOUND));
 
         ProductResponse productResponse=new ProductResponse();
@@ -47,9 +43,9 @@ public class ProductServiceImpl implements IProductServie{
     }
 
     @Override
-    public long reduceQuantity(Long productId, Long quantity) {
+    public long reduceQuantity(long productId, long quantity) {
         log.info("Reducing product quantity for product with id : {}",productId);
-        Product product= productRepository.findById(productId.toString()).orElseThrow(()->
+        Product product= productRepository.findById(String.valueOf(productId)).orElseThrow(()->
                 new ProductServiceCustomException("Product not found with ID: "+productId, ProductErrorCode.PRODUCT_NOT_FOUND));
         if(product.getProductQuantity()>=quantity){
             product.setProductQuantity(product.getProductQuantity()-quantity);
