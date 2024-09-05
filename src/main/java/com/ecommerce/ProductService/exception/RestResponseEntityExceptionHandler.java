@@ -12,11 +12,12 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     @ExceptionHandler(ProductServiceCustomException.class)
     public ResponseEntity<ErrorResponse> handleProductNotFoundException(ProductServiceCustomException exception){
-        ErrorResponse.ErrorResponseBuilder builder = ErrorResponse.builder();
-        builder.errorMessage(exception.getMessage());
-        builder.errorCode(exception.getErrorCode());
-        ErrorResponse errorMessage= builder.build();
 
-        return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
+        ErrorResponse errorResponse= ErrorResponse.builder()
+                .errorMessage(exception.getMessage())
+                .errorCode(exception.getErrorCode())
+                .build();
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 }

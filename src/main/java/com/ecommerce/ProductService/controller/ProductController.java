@@ -3,7 +3,6 @@ package com.ecommerce.ProductService.controller;
 import com.ecommerce.ProductService.model.ProductRequest;
 import com.ecommerce.ProductService.model.ProductResponse;
 import com.ecommerce.ProductService.service.IProductService;
-import jakarta.ws.rs.QueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
